@@ -1,3 +1,4 @@
+from numpy cimport ndarray
 from khash cimport (kh_int64_t, kh_uint64_t, kh_float64_t, kh_pymap_t,
                     kh_str_t, uint64_t, int64_t, float64_t)
 
@@ -26,6 +27,15 @@ cdef class Float64HashTable(HashTable):
 
 cdef class PyObjectHashTable(HashTable):
     cdef kh_pymap_t *table
+
+    cpdef get_item(self, object val)
+    cpdef set_item(self, object key, Py_ssize_t val)
+
+cdef class MultiIndexHashTable(HashTable):
+    cdef:
+        kh_int64_t *table
+        object values
+        int64_t nlevels
 
     cpdef get_item(self, object val)
     cpdef set_item(self, object key, Py_ssize_t val)

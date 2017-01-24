@@ -843,3 +843,153 @@ cdef class PyObjectHashTable(HashTable):
                 count += 1
 
         return np.asarray(labels)
+
+
+cdef class MultiIndexHashTable(HashTable):
+
+    def __init__(self, size_hint=1):
+        self.table = kh_init_int64()
+        self.values = None
+        self.nlevels = 0
+        kh_resize_int64(self.table, size_hint)
+
+    def __dealloc__(self):
+        if self.table is not NULL:
+            kh_destroy_int64(self.table)
+            self.table = NULL
+            self.values = None
+            self.nlevels = 0
+
+    def __len__(self):
+        return self.table.size
+
+    def __contains__(self, object key):
+        cdef khiter_t k
+        hash(key)
+        if key != key or key is None:
+            key = na_sentinel
+        k = kh_get_int64(self.table, hash(key))
+        return k != self.table.n_buckets
+
+    cpdef get_item(self, object val):
+        cdef:
+            khiter_t k
+            Py_ssize_t level
+            int64_t i
+
+        if val != val or val is None:
+            val = na_sentinel
+        k = kh_get_int64(self.table, hash(val))
+        if k != self.table.n_buckets:
+            i = self.table.vals[k]
+            return tuple([self.values[level][i] for level in range(self.nlevels)])
+        else:
+            raise KeyError(val)
+
+    def get_iter_test(self, object key, Py_ssize_t iterations):
+        cdef Py_ssize_t i, val
+        if key != key or key is None:
+            key = na_sentinel
+        for i in range(iterations):
+            k = kh_get_int64(self.table, hash(key))
+            if k != self.table.n_buckets:
+                val = self.table.vals[k]
+
+    cpdef set_item(self, object key, Py_ssize_t val):
+        raise NotImplementedError
+
+    def map_locations(self, object mi):
+        cdef:
+            Py_ssize_t i, n, level
+            int64_t val
+            int ret = 0
+            khiter_t k
+
+        # the values are a rec-array
+        self.nlevels = len(mi.levels)
+        self.values = [mi.get_level_values(level).values
+                       for level in range(self.nlevels)]
+
+        n = len(self.values[0])
+        for i in range(n):
+            val = hash(tuple([self.values[level][i]
+                              for level in range(self.nlevels)]))
+            k = kh_put_int64(self.table, val, &ret)
+            self.table.vals[k] = i
+
+    def lookup(self, ndarray[object] values):
+        cdef:
+            Py_ssize_t i, n = len(values)
+            int ret = 0
+            int64_t val
+            khiter_t k
+            int64_t[:] locs = np.empty(n, dtype=np.int64)
+
+        for i in range(n):
+            val = hash(values[i])
+            if val != val or val is None:
+                val = na_sentinel
+
+            k = kh_get_int64(self.table, val)
+            if k != self.table.n_buckets:
+                locs[i] = self.table.vals[k]
+            else:
+                locs[i] = -1
+
+        return np.asarray(locs)
+
+    def unique(self, ndarray[object] values):
+        cdef:
+            Py_ssize_t i, n = len(values)
+            int ret = 0
+            int64_t val
+            khiter_t k
+            ObjectVector uniques = ObjectVector()
+            bint seen_na = 0
+
+        for i in range(n):
+            val = hash(values[i])
+
+            if not _checknan(val):
+                k = kh_get_int64(self.table, val)
+                if k == self.table.n_buckets:
+                    kh_put_int64(self.table, val, &ret)
+                    uniques.append(val)
+            elif not seen_na:
+                seen_na = 1
+                uniques.append(nan)
+
+        return uniques.to_array()
+
+    def get_labels(self, ndarray[object] values, ObjectVector uniques,
+                   Py_ssize_t count_prior, int64_t na_sentinel,
+                   bint check_null=True):
+        cdef:
+            Py_ssize_t i, n = len(values)
+            int64_t[:] labels
+            Py_ssize_t idx, count = count_prior
+            int ret = 0
+            int64_t val
+            khiter_t k
+
+        labels = np.empty(n, dtype=np.int64)
+
+        for i in range(n):
+            val = hash(values[i])
+
+            if check_null and val != val or val is None:
+                labels[i] = na_sentinel
+                continue
+
+            k = kh_get_int64(self.table, val)
+            if k != self.table.n_buckets:
+                idx = self.table.vals[k]
+                labels[i] = idx
+            else:
+                k = kh_put_int64(self.table, val, &ret)
+                self.table.vals[k] = count
+                uniques.append(val)
+                labels[i] = count
+                count += 1
+
+        return np.asarray(labels)

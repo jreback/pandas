@@ -73,6 +73,7 @@ class MultiIndex(Index):
     _levels = FrozenList()
     _labels = FrozenList()
     _comparables = ['names']
+    _engine_type = _index.MultiIndexEngine
     rename = Index.set_names
 
     def __new__(cls, levels=None, labels=None, sortorder=None, names=None,
@@ -114,7 +115,6 @@ class MultiIndex(Index):
             result._verify_integrity()
         if _set_identity:
             result._reset_identity()
-
         return result
 
     def _verify_integrity(self, labels=None, levels=None):
@@ -613,8 +613,13 @@ class MultiIndex(Index):
 
     _tuples = None
 
+    @cache_readonly
+    def _engine(self):
+        return self._engine_type(lambda: self, len(self))
+
     @property
     def values(self):
+        print("values called")
         if self._tuples is not None:
             return self._tuples
 

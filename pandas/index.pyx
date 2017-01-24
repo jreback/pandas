@@ -1,4 +1,4 @@
-# cython: profile=False
+# cython: profile=True
 
 from numpy cimport ndarray
 
@@ -275,7 +275,6 @@ cdef class IndexEngine:
         if not self.is_mapping_populated:
 
             values = self._get_index_values()
-
             self.mapping = self._make_hash_table(len(values))
             self.mapping.map_locations(values)
 
@@ -544,6 +543,61 @@ cdef inline _to_i8(object val):
 cdef inline bint _is_utc(object tz):
     return tz is UTC or isinstance(tz, _du_utc)
 
+
+cdef class MultiIndexEngine(IndexEngine):
+
+    def _call_monotonic(self, values):
+        return algos.is_monotonic_object(values, timelike=False)
+
+    def get_backfill_indexer(self, other, limit=None):
+        return algos.backfill_object(self._get_index_values(),
+                                        other, limit=limit)
+
+    def get_pad_indexer(self, other, limit=None):
+        return algos.pad_object(self._get_index_values(),
+                                   other, limit=limit)
+
+    cdef _make_hash_table(self, n):
+        return _hash.MultiIndexHashTable(n)
+
+    cdef _check_type(self, object val):
+        hash(val)
+        if util.is_bool_object(val):
+            raise KeyError(val)
+        elif util.is_float_object(val):
+            raise KeyError(val)
+
+    cdef _maybe_get_bool_indexer(self, object val):
+        cdef:
+            ndarray[uint8_t, cast=True] indexer
+            ndarray[object] values
+            int count = 0
+            Py_ssize_t i, n
+            int last_true
+
+        if not util.is_integer_object(val):
+            raise KeyError(val)
+
+        values = self._get_index_values()
+        n = len(values)
+
+        result = np.empty(n, dtype=bool)
+        indexer = result.view(np.uint8)
+
+        for i in range(n):
+            if values[i] == val:
+                count += 1
+                indexer[i] = 1
+                last_true = i
+            else:
+                indexer[i] = 0
+
+        if count == 0:
+            raise KeyError(val)
+        if count == 1:
+            return last_true
+
+        return result
 
 # Generated from template.
 include "index_class_helper.pxi"
