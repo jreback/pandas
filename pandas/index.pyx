@@ -547,7 +547,8 @@ cdef inline bint _is_utc(object tz):
 cdef class MultiIndexEngine(IndexEngine):
 
     def _call_monotonic(self, values):
-        return algos.is_monotonic_object(values, timelike=False)
+        is_lexsorted = values.is_lexsorted()
+        return is_lexsorted, False, values.is_unique
 
     def get_backfill_indexer(self, other, limit=None):
         return algos.backfill_object(self._get_index_values(),

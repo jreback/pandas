@@ -2404,7 +2404,8 @@ class Index(IndexOpsMixin, StringAccessorMixin, PandasObject):
                              'if index and target are monotonic' % method)
 
         side = 'left' if method == 'pad' else 'right'
-        target = np.asarray(target)
+        ##### TODO? remove
+        # target = np.asarray(target)
 
         # find exact matches first (this simplifies the algorithm)
         indexer = self.get_indexer(target)
