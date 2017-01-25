@@ -917,16 +917,24 @@ cdef class MultiIndexHashTable(HashTable):
             k = kh_put_int64(self.table, val, &ret)
             self.table.vals[k] = i
 
-    def lookup(self, ndarray[object] values):
+    def lookup(self, object mi):
+        # look up with a target mi
         cdef:
-            Py_ssize_t i, n = len(values)
+            Py_ssize_t i, n = len(mi), level
+            object values
             int ret = 0
             int64_t val
             khiter_t k
             int64_t[:] locs = np.empty(n, dtype=np.int64)
 
+        assert self.nlevels == mi.nlevels, "or bad stuff happens"
+        values = [mi.get_level_values(level).values
+                  for level in range(mi.nlevels)]
+
         for i in range(n):
-            val = hash(values[i])
+            val = hash(tuple([values[level][i]
+                              for level in range(self.nlevels)]))
+
             if val != val or val is None:
                 val = na_sentinel
 

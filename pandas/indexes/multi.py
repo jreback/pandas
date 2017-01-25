@@ -619,7 +619,6 @@ class MultiIndex(Index):
 
     @property
     def values(self):
-        print("values called")
         if self._tuples is not None:
             return self._tuples
 
@@ -1453,29 +1452,23 @@ class MultiIndex(Index):
         method = missing.clean_reindex_fill_method(method)
         target = _ensure_index(target)
 
-        target_index = target
-        if isinstance(target, MultiIndex):
-            target_index = target._tuple_index
-
-        if not is_object_dtype(target_index.dtype):
-            return np.ones(len(target_index)) * -1
+        if not isinstance(target, MultiIndex):
+            target = MultiIndex.from_tuples(target)
 
         if not self.is_unique:
             raise Exception('Reindexing only valid with uniquely valued Index '
                             'objects')
 
-        self_index = self._tuple_index
-
         if method == 'pad' or method == 'backfill':
             if tolerance is not None:
                 raise NotImplementedError("tolerance not implemented yet "
                                           'for MultiIndex')
-            indexer = self_index._get_fill_indexer(target, method, limit)
+            indexer = self._get_fill_indexer(target, method, limit)
         elif method == 'nearest':
             raise NotImplementedError("method='nearest' not implemented yet "
                                       'for MultiIndex; see GitHub issue 9365')
         else:
-            indexer = self_index._engine.get_indexer(target._values)
+            indexer = self._engine.get_indexer(target)
 
         return _ensure_platform_int(indexer)
 
@@ -1541,17 +1534,6 @@ class MultiIndex(Index):
             target.names = self.names
 
         return target, indexer
-
-    @cache_readonly
-    def _tuple_index(self):
-        """
-        Convert MultiIndex to an Index of tuples
-
-        Returns
-        -------
-        index : Index
-        """
-        return Index(self._values)
 
     def get_slice_bound(self, label, side, kind):
 

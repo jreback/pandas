@@ -1389,8 +1389,6 @@ class TestMultiIndex(Base, tm.TestCase):
 
         self.assertFalse(self.index.equals(self.index[:-1]))
 
-        self.assertTrue(self.index.equals(self.index._tuple_index))
-
         # different number of levels
         index = MultiIndex(levels=[Index(lrange(4)), Index(lrange(4)), Index(
             lrange(4))], labels=[np.array([0, 0, 1, 2, 2, 2, 3, 3]), np.array(
@@ -1474,7 +1472,7 @@ class TestMultiIndex(Base, tm.TestCase):
 
         the_union = piece1 | piece2
 
-        tups = sorted(self.index._tuple_index)
+        tups = sorted(self.index.values)
         expected = MultiIndex.from_tuples(tups)
 
         self.assertTrue(the_union.equals(expected))
@@ -1507,7 +1505,7 @@ class TestMultiIndex(Base, tm.TestCase):
         piece2 = self.index[3:]
 
         the_int = piece1 & piece2
-        tups = sorted(self.index[3:5]._tuple_index)
+        tups = sorted(self.index[3:5].values)
         expected = MultiIndex.from_tuples(tups)
         self.assertTrue(the_int.equals(expected))
 
@@ -1580,7 +1578,7 @@ class TestMultiIndex(Base, tm.TestCase):
         self.assertEqual(len(result), 0)
 
         # raise Exception called with non-MultiIndex
-        result = first.difference(first._tuple_index)
+        result = first.difference(first.values)
         self.assertTrue(result.equals(first[:0]))
 
         # name from empty array
@@ -1606,7 +1604,7 @@ class TestMultiIndex(Base, tm.TestCase):
 
     def test_argsort(self):
         result = self.index.argsort()
-        expected = self.index._tuple_index.argsort()
+        expected = self.index.values.argsort()
         tm.assert_numpy_array_equal(result, expected)
 
     def test_sortlevel(self):
