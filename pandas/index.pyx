@@ -1,4 +1,4 @@
-# cython: profile=True
+# cython: profile=False
 
 from numpy cimport ndarray
 
@@ -546,6 +546,13 @@ cdef inline bint _is_utc(object tz):
 
 cdef class MultiIndexEngine(IndexEngine):
 
+    def __init__(self, vgetter, n):
+        super(MultiIndexEngine, self).__init__(vgetter, n)
+
+        # by definition we *always* want to use our hashtable
+        # and not bin searching
+        self.over_size_threshold = False
+
     def _call_monotonic(self, values):
         is_lexsorted = values.is_lexsorted()
         return is_lexsorted, False, values.is_unique
@@ -557,6 +564,18 @@ cdef class MultiIndexEngine(IndexEngine):
     def get_pad_indexer(self, other, limit=None):
         return algos.pad_object(self._get_index_values(),
                                    other, limit=limit)
+
+    cpdef get_loc(self, object val):
+        self._ensure_mapping_populated()
+        if not self.unique:
+            return self._get_loc_duplicates(val)
+
+        self._check_type(val)
+
+        try:
+            return self.mapping.get_item(val)
+        except TypeError:
+            raise KeyError(val)
 
     cdef _make_hash_table(self, n):
         return _hash.MultiIndexHashTable(n)

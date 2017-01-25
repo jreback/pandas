@@ -2405,7 +2405,7 @@ class Index(IndexOpsMixin, StringAccessorMixin, PandasObject):
 
         side = 'left' if method == 'pad' else 'right'
         ##### TODO? remove
-        # target = np.asarray(target)
+        #target = np.asarray(target)
 
         # find exact matches first (this simplifies the algorithm)
         indexer = self.get_indexer(target)
