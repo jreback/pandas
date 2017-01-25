@@ -874,15 +874,12 @@ cdef class MultiIndexHashTable(HashTable):
     cpdef get_item(self, object val):
         cdef:
             khiter_t k
-            Py_ssize_t level
-            int64_t i
 
         if val != val or val is None:
             val = na_sentinel
         k = kh_get_int64(self.table, hash(val))
         if k != self.table.n_buckets:
-            i = self.table.vals[k]
-            return tuple([self.values[level][i] for level in range(self.nlevels)])
+            return self.table.vals[k]
         else:
             raise KeyError(val)
 
