@@ -25,8 +25,8 @@ from datetime cimport *
 cimport util
 cimport lib
 from lib cimport is_null_datetimelike, is_period
-import lib
-from pandas import tslib
+import _lib as lib
+from pandas import _tslib as tslib
 from tslib import Timedelta, Timestamp, iNaT, NaT
 from tslib import have_pytz, _get_utcoffset
 from tslib cimport (

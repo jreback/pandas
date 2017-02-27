@@ -246,6 +246,22 @@ Using ``.iloc``. Here we will get the location of the 'A' column, then use *posi
   df.iloc[[0, 2], df.columns.get_loc('A')]
 
 
+.. _whatsnew_0200.api_breaking.extensions:
+
+Extensions have been made private
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+All pandas compiled extensions are now imported privately to the pandas namespace. These are now imported as ``_*`` (:issue:`12588`)
+
+This includes the following c-extensions:
+
+- tslib
+- hashtable
+- parser
+- algos
+- lib
+- json
+
 .. _whatsnew_0200.api_breaking.index_map:
 
 Map on Index types now return other Index types

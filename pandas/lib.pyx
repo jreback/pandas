@@ -57,8 +57,7 @@ from datetime cimport *
 
 from tslib cimport (convert_to_tsobject, convert_to_timedelta64,
                     _check_all_nulls)
-import tslib
-from tslib import NaT, Timestamp, Timedelta
+from _tslib import NaT, Timestamp, Timedelta
 
 cdef int64_t NPY_NAT = util.get_nat()
 

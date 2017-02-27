@@ -46,7 +46,7 @@ from util cimport numeric, get_nat
 
 cimport lib
 from lib cimport is_null_datetimelike
-from pandas import lib
+from pandas import _lib as lib
 
 cdef int64_t iNaT = get_nat()
 

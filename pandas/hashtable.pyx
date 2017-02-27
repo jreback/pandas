@@ -4,6 +4,7 @@ from cpython cimport PyObject, Py_INCREF, PyList_Check, PyTuple_Check
 
 from khash cimport *
 from numpy cimport *
+from hashtable cimport *
 
 from libc.stdlib cimport malloc, free
 from cpython cimport (PyMem_Malloc, PyMem_Realloc, PyMem_Free,
@@ -22,8 +23,6 @@ cdef extern from "numpy/npy_math.h":
 cimport cython
 cimport numpy as cnp
 
-from pandas.lib import checknull
-
 cnp.import_array()
 cnp.import_ufunc()
 
@@ -40,7 +39,6 @@ cdef extern from "Python.h":
     int PySlice_Check(object)
 
 cdef size_t _INIT_VEC_CAP = 128
-
 
 include "hashtable_class_helper.pxi"
 include "hashtable_func_helper.pxi"

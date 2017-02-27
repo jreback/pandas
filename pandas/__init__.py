@@ -23,7 +23,7 @@ del hard_dependencies, dependency, missing_dependencies
 from pandas.compat.numpy import *
 
 try:
-    from pandas import hashtable, tslib, lib
+    from pandas import hashtable, _tslib, _lib
 except ImportError as e:  # pragma: no cover
     # hack but overkill to use re
     module = str(e).lstrip('cannot import name ')

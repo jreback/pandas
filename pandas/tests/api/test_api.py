@@ -33,13 +33,8 @@ class TestPDApi(Base, tm.TestCase):
     # top-level sub-packages
     lib = ['api', 'compat', 'computation', 'core',
            'indexes', 'formats', 'pandas',
-           'test', 'tools', 'tseries',
-           'types', 'util', 'options', 'io']
-
-    # top-level packages that are c-imports, should rename to _*
-    # to avoid naming conflicts
-    lib_to_rename = ['algos', 'hashtable', 'tslib', 'msgpack', 'sparse',
-                     'json', 'lib', 'index', 'parser']
+           'test', 'tools', 'tseries', 'msgpack',
+           'types', 'util', 'options', 'sparse', 'io']
 
     # these are already deprecated; awaiting removal
     deprecated_modules = ['stats', 'datetools']
