@@ -180,7 +180,7 @@ void initObjToJSON(void)
         Py_DECREF(mod_pandas);
     }
 
-    mod_tslib = PyImport_ImportModule("pandas.tslib");
+    mod_tslib = PyImport_ImportModule("pandas._tslib");
     if (mod_tslib) {
         cls_nat = (PyTypeObject *)PyObject_GetAttrString(mod_tslib, "NaTType");
         Py_DECREF(mod_tslib);
