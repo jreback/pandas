@@ -1,7 +1,7 @@
 import sys
 from decimal import Decimal
 cimport util
-from tslib import NaT, get_timezone
+from _tslib import NaT, get_timezone
 from datetime import datetime, timedelta
 iNaT = util.get_nat()
 

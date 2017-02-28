@@ -17,8 +17,8 @@ import numpy as np
 
 cimport tslib
 from hashtable cimport *
-from pandas import algos, tslib, hashtable as _hash
-from pandas.tslib import Timestamp, Timedelta
+from pandas import _algos as algos, _tslib, hashtable as _hash
+from pandas._tslib import Timestamp, Timedelta
 
 from datetime cimport (get_datetime64_value, _pydatetime_to_dts,
                        pandas_datetimestruct)
@@ -544,8 +544,8 @@ cdef inline _to_i8(object val):
             # Save the original date value so we can get the utcoffset from it.
             ival = _pydatetime_to_dts(val, &dts)
             if tzinfo is not None and not _is_utc(tzinfo):
-                offset = tslib._get_utcoffset(tzinfo, val)
-                ival -= tslib._delta_to_nanoseconds(offset)
+                offset = _tslib._get_utcoffset(tzinfo, val)
+                ival -= _tslib._delta_to_nanoseconds(offset)
             return ival
         return val
 

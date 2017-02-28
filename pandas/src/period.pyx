@@ -26,9 +26,9 @@ cimport util
 cimport lib
 from lib cimport is_null_datetimelike, is_period
 import _lib as lib
-from pandas import _tslib as tslib
-from tslib import Timedelta, Timestamp, iNaT, NaT
-from tslib import have_pytz, _get_utcoffset
+from pandas import _tslib
+from _tslib import Timedelta, Timestamp, iNaT, NaT
+from _tslib import have_pytz, _get_utcoffset
 from tslib cimport (
     maybe_get_tz,
     _is_utc,
@@ -474,7 +474,7 @@ def extract_ordinals(ndarray[object] values, freq):
         p = values[i]
 
         if is_null_datetimelike(p):
-            ordinals[i] = tslib.iNaT
+            ordinals[i] = iNaT
         else:
             try:
                 ordinals[i] = p.ordinal
@@ -485,9 +485,9 @@ def extract_ordinals(ndarray[object] values, freq):
 
             except AttributeError:
                 p = Period(p, freq=freq)
-                if p is tslib.NaT:
+                if p is NaT:
                     # input may contain NaT-like string
-                    ordinals[i] = tslib.iNaT
+                    ordinals[i] = iNaT
                 else:
                     ordinals[i] = p.ordinal
 
@@ -716,8 +716,8 @@ cdef class _Period(object):
         """
         Fast creation from an ordinal and freq that are already validated!
         """
-        if ordinal == tslib.iNaT:
-            return tslib.NaT
+        if ordinal == iNaT:
+            return NaT
         else:
             self = _Period.__new__(cls)
             self.ordinal = ordinal
@@ -730,7 +730,7 @@ cdef class _Period(object):
                 msg = _DIFFERENT_FREQ.format(self.freqstr, other.freqstr)
                 raise IncompatibleFrequency(msg)
             return PyObject_RichCompareBool(self.ordinal, other.ordinal, op)
-        elif other is tslib.NaT:
+        elif other is NaT:
             return _nat_scalar_rules[op]
         # index/series like
         elif hasattr(other, '_typ'):
@@ -751,8 +751,8 @@ cdef class _Period(object):
                               offsets.Tick, Timedelta)):
             offset = frequencies.to_offset(self.freq.rule_code)
             if isinstance(offset, offsets.Tick):
-                nanos = tslib._delta_to_nanoseconds(other)
-                offset_nanos = tslib._delta_to_nanoseconds(offset)
+                nanos = _tslib._delta_to_nanoseconds(other)
+                offset_nanos = _tslib._delta_to_nanoseconds(offset)
 
                 if nanos % offset_nanos == 0:
                     ordinal = self.ordinal + (nanos // offset_nanos)
@@ -776,8 +776,8 @@ cdef class _Period(object):
                                   offsets.Tick, offsets.DateOffset,
                                   Timedelta)):
                 return self._add_delta(other)
-            elif other is tslib.NaT:
-                return tslib.NaT
+            elif other is NaT:
+                return NaT
             elif lib.is_integer(other):
                 ordinal = self.ordinal + other * self.freq.n
                 return Period(ordinal=ordinal, freq=self.freq)
@@ -808,8 +808,8 @@ cdef class _Period(object):
             else:  # pragma: no cover
                 return NotImplemented
         elif isinstance(other, Period):
-            if self is tslib.NaT:
-                return tslib.NaT
+            if self is NaT:
+                return NaT
             return NotImplemented
         else:
             return NotImplemented
@@ -1164,7 +1164,7 @@ class Period(_Period):
             if (year is None and month is None and
                         quarter is None and day is None and
                         hour is None and minute is None and second is None):
-                ordinal = tslib.iNaT
+                ordinal = iNaT
             else:
                 if freq is None:
                     raise ValueError("If value is None, freq cannot be None")
@@ -1189,8 +1189,8 @@ class Period(_Period):
                 converted = other.asfreq(freq)
                 ordinal = converted.ordinal
 
-        elif is_null_datetimelike(value) or value in tslib._nat_strings:
-            ordinal = tslib.iNaT
+        elif is_null_datetimelike(value) or value in _tslib._nat_strings:
+            ordinal = iNaT
 
         elif isinstance(value, compat.string_types) or lib.is_integer(value):
             if lib.is_integer(value):
