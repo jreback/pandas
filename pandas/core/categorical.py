@@ -6,7 +6,7 @@ import types
 
 from pandas import compat, lib
 from pandas.compat import u, lzip
-import pandas.algos as _algos
+import pandas._algos as _algos
 
 from pandas.types.generic import ABCSeries, ABCIndexClass, ABCCategoricalIndex
 from pandas.types.missing import isnull, notnull

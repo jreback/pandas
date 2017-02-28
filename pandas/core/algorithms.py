@@ -34,7 +34,7 @@ from pandas.compat.numpy import _np_version_under1p10
 from pandas.types.missing import isnull
 
 import pandas.core.common as com
-import pandas.algos as algos
+import pandas._algos as algos
 import pandas.hashtable as htable
 from pandas.compat import string_types
 from pandas._tslib import iNaT

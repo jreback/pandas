@@ -330,7 +330,7 @@ class CheckSDist(sdist_class):
                  'pandas/hashtable.pyx',
                  'pandas.tslib.pyx',
                  'pandas/index.pyx',
-                 'pandas/algos.pyx',
+                 'pandas.algos.pyx',
                  'pandas/join.pyx',
                  'pandas/window.pyx',
                  'pandas/parser.pyx',

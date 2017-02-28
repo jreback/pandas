@@ -8,7 +8,7 @@ from pandas import Index, isnull
 from pandas.util.testing import assert_almost_equal
 import pandas.util.testing as tm
 import pandas._lib as lib
-import pandas.algos as algos
+import pandas._algos as algos
 
 
 def test_series_grouper():

@@ -18,7 +18,7 @@ from pandas._lib import isscalar
 from pandas._tslib import iNaT
 from pandas.compat import bind_method
 import pandas.core.missing as missing
-import pandas.algos as _algos
+import pandas._algos as _algos
 from pandas.core.common import (_values_from_object, _maybe_match_name,
                                 PerformanceWarning)
 from pandas.types.missing import notnull, isnull

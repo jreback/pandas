@@ -94,7 +94,7 @@ from pandas.formats.printing import pprint_thing
 import pandas.tools.plotting as gfx
 
 import pandas._lib as lib
-import pandas.algos as _algos
+import pandas._algos as _algos
 
 from pandas.core.config import get_option
 

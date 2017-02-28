@@ -8,7 +8,7 @@ from pandas.types.common import (_ensure_platform_int,
                                  is_categorical_dtype)
 from pandas.types.missing import isnull
 import pandas.core.algorithms as algos
-import pandas.algos as _algos
+import pandas._algos as _algos
 import pandas.hashtable as _hash
 from pandas import lib
 

@@ -24,7 +24,7 @@ from pandas.core.sorting import (get_group_index, compress_group_index,
                                  decons_obs_group_ids)
 
 import pandas.core.algorithms as algos
-import pandas.algos as _algos
+import pandas._algos as _algos
 
 from pandas.core.index import MultiIndex, _get_na_value
 

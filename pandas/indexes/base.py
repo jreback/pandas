@@ -6,7 +6,7 @@ import numpy as np
 import pandas._tslib as tslib
 import pandas._lib as lib
 import pandas._join as _join
-import pandas.algos as _algos
+import pandas._algos as _algos
 import pandas.index as _index
 from pandas._lib import Timestamp, Timedelta, is_datetime_array
 
@@ -2967,7 +2967,7 @@ class Index(IndexOpsMixin, StringAccessorMixin, PandasObject):
         order of the data indexed by the MultiIndex will not be changed;
         otherwise, it will tie out with `other`.
         """
-        from pandas.algos import groupsort_indexer
+        from pandas._algos import groupsort_indexer
         from .multi import MultiIndex
 
         def _get_leaf_sorter(labels):

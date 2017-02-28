@@ -10,7 +10,7 @@ from pandas import Series, Categorical, CategoricalIndex, Index
 import pandas as pd
 
 from pandas import compat
-import pandas.algos as _algos
+import pandas._algos as _algos
 from pandas.compat import lrange
 import pandas.core.algorithms as algos
 import pandas.util.testing as tm
