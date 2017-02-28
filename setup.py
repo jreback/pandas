@@ -457,14 +457,16 @@ else:
     extra_compile_args=['-Wno-unused-function']
 
 lib_depends = lib_depends + ['pandas/src/numpy_helper.h',
-                             'pandas/src/parse_helper.h']
+                             'pandas/src/parse_helper.h',
+                             'src/lib.pxd']
 
 
 tseries_depends = ['pandas/src/datetime/np_datetime.h',
                    'pandas/src/datetime/np_datetime_strings.h',
                    'pandas/src/datetime_helper.h',
                    'pandas/src/period_helper.h',
-                   'pandas/src/datetime.pxd']
+                   'pandas/src/datetime.pxd',
+                   'pandas/src/tslib.pxd']
 
 
 # some linux distros require it
@@ -472,14 +474,12 @@ libraries = ['m'] if not is_platform_windows() else []
 
 ext_data = dict(
     _lib={'pyxfile': 'lib',
-          'pxdfiles': ['src/lib'],
           'depends': lib_depends},
-    hashtable={'pyxfile': 'hashtable',
-               'pxdfiles': ['src/hashtable', 'src/util', 'src/khash'],
-               'depends': (['pandas/src/klib/khash_python.h']
-                           + _pxi_dep['hashtable'])},
+    _hashtable={'pyxfile': 'hashtable',
+                'pxdfiles': ['src/hashtable', 'src/util', 'src/khash'],
+                'depends': (['pandas/src/klib/khash_python.h']
+                            + _pxi_dep['hashtable'])},
     _tslib={'pyxfile': 'tslib',
-            'pxdfiles': ['src/tslib'],
             'depends': tseries_depends,
             'sources': ['pandas/src/datetime/np_datetime.c',
                         'pandas/src/datetime/np_datetime_strings.c',
