@@ -16,7 +16,7 @@ from pandas.tseries.index import DatetimeIndex
 from pandas._period import IncompatibleFrequency    # flake8: noqa
 from pandas.tseries.period import PeriodIndex
 from pandas.tseries.tdi import TimedeltaIndex
-from pandas import tslib
+from pandas import _tslib as tslib
 from pandas.core.algorithms import take_1d
 
 

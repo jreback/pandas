@@ -10,7 +10,7 @@ import warnings
 import numpy as np
 import pandas as pd
 import datetime
-from pandas import compat, lib, tslib
+from pandas import compat, _lib as lib, _tslib as tslib
 import pandas.index as _index
 from pandas.util.decorators import Appender
 import pandas.computation.expressions as expressions

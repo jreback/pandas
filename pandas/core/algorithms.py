@@ -6,7 +6,7 @@ from __future__ import division
 from warnings import warn
 import numpy as np
 
-from pandas import compat, lib, tslib, _np_version_under1p8
+from pandas import compat, _lib as lib, _tslib as tslib, _np_version_under1p8
 from pandas.types.cast import _maybe_promote
 from pandas.types.generic import ABCSeries, ABCIndex
 from pandas.types.common import (is_unsigned_integer_dtype,

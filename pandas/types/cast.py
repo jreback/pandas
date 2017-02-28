@@ -2,7 +2,7 @@
 
 from datetime import datetime, timedelta
 import numpy as np
-from pandas import lib, tslib
+from pandas import _lib, _tslib
 from pandas._tslib import iNaT
 from pandas.compat import string_types, text_type, PY3
 from .common import (_ensure_object, is_bool, is_integer, is_float,
