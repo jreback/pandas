@@ -56,7 +56,7 @@ from datetime import datetime as pydatetime
 from datetime cimport *
 
 from tslib cimport (convert_to_tsobject, convert_to_timedelta64,
-                    _check_all_nulls)
+                     _check_all_nulls)
 from _tslib import NaT, Timestamp, Timedelta
 
 cdef int64_t NPY_NAT = util.get_nat()
