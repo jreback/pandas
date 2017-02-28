@@ -3,7 +3,7 @@ import warnings
 import operator
 
 import numpy as np
-import pandas.tslib as tslib
+import pandas._tslib as tslib
 import pandas.lib as lib
 import pandas._join as _join
 import pandas.algos as _algos

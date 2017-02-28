@@ -42,7 +42,7 @@ from pandas import compat
 from pandas.util.decorators import (Appender, Substitution, cache_readonly,
                                     deprecate_kwarg)
 from pandas.lib import infer_dtype
-import pandas.tslib as tslib
+import pandas._tslib as tslib
 from pandas.compat import zip, u
 import pandas.indexes.base as ibase
 _index_doc_kwargs = dict(ibase._index_doc_kwargs)

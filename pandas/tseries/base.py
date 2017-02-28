@@ -20,7 +20,7 @@ from pandas.core.algorithms import checked_add_with_arr
 from pandas.core.common import AbstractMethodError
 
 import pandas.formats.printing as printing
-import pandas.tslib as tslib
+import pandas._tslib as tslib
 import pandas._period as prlib
 import pandas.lib as lib
 from pandas.core.index import Index

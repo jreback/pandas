@@ -328,7 +328,7 @@ class CheckSDist(sdist_class):
 
     _pyxfiles = ['pandas/lib.pyx',
                  'pandas/hashtable.pyx',
-                 'pandas/tslib.pyx',
+                 'pandas.tslib.pyx',
                  'pandas/index.pyx',
                  'pandas/algos.pyx',
                  'pandas/join.pyx',

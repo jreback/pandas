@@ -3,7 +3,7 @@ missing types & inference
 """
 import numpy as np
 from pandas import lib
-from pandas.tslib import NaT, iNaT
+from pandas._tslib import NaT, iNaT
 from .generic import (ABCMultiIndex, ABCSeries,
                       ABCIndexClass, ABCGeneric)
 from .common import (is_string_dtype, is_datetimelike,

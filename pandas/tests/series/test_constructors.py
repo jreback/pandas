@@ -342,7 +342,7 @@ class TestSeriesConstructors(TestData, tm.TestCase):
         self.assertTrue(result.dtype == object)
 
     def test_constructor_dtype_datetime64(self):
-        import pandas.tslib as tslib
+        import pandas._tslib as tslib
 
         s = Series(tslib.iNaT, dtype='M8[ns]', index=lrange(5))
         self.assertTrue(isnull(s).all())

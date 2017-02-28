@@ -23,7 +23,7 @@ from pandas.compat.numpy import function as nv
 from pandas.lib import Timestamp
 from pandas._period import IncompatibleFrequency
 import pandas.lib as lib
-import pandas.tslib as tslib
+import pandas._tslib as tslib
 
 from pandas.util.decorators import Appender
 from pandas.core.generic import _shared_docs

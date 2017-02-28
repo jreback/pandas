@@ -18,8 +18,8 @@ from pandas.tseries.offsets import DateOffset
 from pandas.util.decorators import cache_readonly, deprecate_kwarg
 import pandas.tseries.offsets as offsets
 import pandas.lib as lib
-import pandas.tslib as tslib
-from pandas.tslib import Timedelta
+import pandas._tslib as tslib
+from pandas._tslib import Timedelta
 from pytz import AmbiguousTimeError
 
 

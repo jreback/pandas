@@ -9,7 +9,7 @@ from functools import partial
 
 import numpy as np
 import pandas.lib as lib
-import pandas.tslib as tslib
+import pandas._tslib as tslib
 from pandas import compat
 from pandas.compat import long, zip, iteritems
 from pandas.core.config import get_option
@@ -476,7 +476,7 @@ def _where_compat(mask, arr1, arr2):
         new_vals = np.where(mask, arr1.view('i8'), arr2.view('i8'))
         return new_vals.view(_NS_DTYPE)
 
-    import pandas.tslib as tslib
+    import pandas._tslib as tslib
     if arr1.dtype == _NS_DTYPE:
         arr1 = tslib.ints_to_pydatetime(arr1.view('i8'))
     if arr2.dtype == _NS_DTYPE:

@@ -37,7 +37,7 @@ import pandas.core.common as com
 import pandas.algos as algos
 import pandas.hashtable as htable
 from pandas.compat import string_types
-from pandas.tslib import iNaT
+from pandas._tslib import iNaT
 
 
 # --------------- #

@@ -60,7 +60,7 @@ import pandas.core.common as com
 from pandas.core.config import option_context
 import pandas.lib as lib
 from pandas.lib import Timestamp
-import pandas.tslib as tslib
+import pandas._tslib as tslib
 import pandas.algos as _algos
 
 _doc_template = """

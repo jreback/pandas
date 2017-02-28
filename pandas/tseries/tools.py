@@ -3,7 +3,7 @@ import numpy as np
 from collections import MutableMapping
 
 import pandas.lib as lib
-import pandas.tslib as tslib
+import pandas._tslib as tslib
 
 from pandas.types.common import (_ensure_object,
                                  is_datetime64_ns_dtype,

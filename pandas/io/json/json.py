@@ -4,7 +4,7 @@ import os
 import numpy as np
 
 import pandas.json as _json
-from pandas.tslib import iNaT
+from pandas._tslib import iNaT
 from pandas.compat import StringIO, long, u
 from pandas import compat, isnull
 from pandas import Series, DataFrame, to_datetime

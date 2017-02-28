@@ -924,7 +924,7 @@ class TestTimeZoneSupportDateutil(TestTimeZoneSupportPytz):
         # Skipped on win32 due to dateutil bug
         tm._skip_if_windows()
 
-        from pandas.tslib import maybe_get_tz
+        from pandas._tslib import maybe_get_tz
 
         # from system utc to real utc
         ts = Timestamp('2001-01-05 11:56', tz=maybe_get_tz('dateutil/UTC'))

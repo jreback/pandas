@@ -32,7 +32,7 @@ from pandas.tseries.timedeltas import (to_timedelta,
 from pandas.tseries.offsets import Tick, DateOffset
 
 import pandas.lib as lib
-import pandas.tslib as tslib
+import pandas._tslib as tslib
 import pandas._join as _join
 import pandas.index as _index
 
