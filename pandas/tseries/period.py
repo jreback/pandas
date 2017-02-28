@@ -41,7 +41,7 @@ from pandas.indexes.base import _index_shared_docs, _ensure_index
 from pandas import compat
 from pandas.util.decorators import (Appender, Substitution, cache_readonly,
                                     deprecate_kwarg)
-from pandas.lib import infer_dtype
+from pandas._lib import infer_dtype
 import pandas._tslib as tslib
 from pandas.compat import zip, u
 import pandas.indexes.base as ibase

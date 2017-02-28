@@ -4,7 +4,7 @@ from random import random
 from math import log, ceil
 from pandas.compat import range
 from numpy.random import randn
-from pandas.lib.skiplist import rolling_median
+from pandas._lib.skiplist import rolling_median
 
 
 class Node(object):
@@ -104,7 +104,7 @@ class RunningMedian:
     'Fast running median with O(lg n) updates where n is the window size'
 
     def __init__(self, n, iterable):
-        from pandas.lib.skiplist import IndexableSkiplist as skiplist
+        from pandas._lib.skiplist import IndexableSkiplist as skiplist
 
         self.it = iter(iterable)
         self.queue = deque(islice(self.it, n))

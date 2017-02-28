@@ -36,7 +36,7 @@ from pandas.tseries import tools
 
 from pandas.util.decorators import Appender
 
-import pandas.lib as lib
+import pandas._lib as lib
 import pandas.parser as _parser
 
 

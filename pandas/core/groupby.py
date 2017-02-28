@@ -58,8 +58,8 @@ from pandas.util.validators import validate_kwargs
 import pandas.core.algorithms as algos
 import pandas.core.common as com
 from pandas.core.config import option_context
-import pandas.lib as lib
-from pandas.lib import Timestamp
+import pandas._lib as lib
+from pandas._lib import Timestamp
 import pandas._tslib as tslib
 import pandas.algos as _algos
 
@@ -4005,7 +4005,7 @@ class DataFrameGroupBy(NDFrameGroupBy):
     def count(self):
         """ Compute count of group, excluding missing values """
         from functools import partial
-        from pandas.lib import count_level_2d
+        from pandas._lib import count_level_2d
         from pandas.types.missing import _isnull_ndarraylike as isnull
 
         data, _ = self._get_data_to_aggregate()

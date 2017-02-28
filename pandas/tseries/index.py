@@ -44,8 +44,8 @@ import pandas.core.common as com
 import pandas.tseries.offsets as offsets
 import pandas.tseries.tools as tools
 
-from pandas.lib import Timestamp
-import pandas.lib as lib
+from pandas._lib import Timestamp
+import pandas._lib as lib
 import pandas._tslib as tslib
 import pandas._period as period
 import pandas._join as _join

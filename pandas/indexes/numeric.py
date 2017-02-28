@@ -1,5 +1,5 @@
 import numpy as np
-import pandas.lib as lib
+import pandas._lib as lib
 import pandas._join as _join
 import pandas.algos as _algos
 import pandas.index as _index

@@ -33,7 +33,7 @@ from pandas.core.config import get_option, set_option
 from pandas.io.common import _get_handle, UnicodeWriter, _expand_user
 from pandas.formats.printing import adjoin, justify, pprint_thing
 import pandas.core.common as com
-import pandas.lib as lib
+import pandas._lib as lib
 from pandas._tslib import iNaT, Timestamp, Timedelta, format_array_from_datetime
 from pandas.tseries.index import DatetimeIndex
 from pandas.tseries.period import PeriodIndex

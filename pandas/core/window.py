@@ -26,7 +26,7 @@ from pandas.types.common import (is_integer,
                                  is_list_like,
                                  _ensure_float64)
 import pandas as pd
-from pandas.lib import isscalar
+from pandas._lib import isscalar
 from pandas.core.base import (PandasObject, SelectionMixin,
                               GroupByMixin)
 import pandas.core.common as com

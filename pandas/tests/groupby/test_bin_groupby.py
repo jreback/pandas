@@ -7,7 +7,7 @@ from pandas.types.common import _ensure_int64
 from pandas import Index, isnull
 from pandas.util.testing import assert_almost_equal
 import pandas.util.testing as tm
-import pandas.lib as lib
+import pandas._lib as lib
 import pandas.algos as algos
 
 

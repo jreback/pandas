@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 import numpy as np
-import pandas.lib as lib
+import pandas._lib as lib
 import pandas.util.testing as tm
 
 from pandas.compat import long, u

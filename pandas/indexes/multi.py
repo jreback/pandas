@@ -6,9 +6,9 @@ from functools import partial
 from sys import getsizeof
 
 import numpy as np
-import pandas.lib as lib
+import pandas._lib as lib
 import pandas.index as _index
-from pandas.lib import Timestamp
+from pandas._lib import Timestamp
 
 from pandas.compat import range, zip, lrange, lzip, map
 from pandas.compat.numpy import function as nv

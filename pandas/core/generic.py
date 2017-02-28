@@ -6,7 +6,7 @@ import weakref
 import gc
 
 import numpy as np
-import pandas.lib as lib
+import pandas._lib as lib
 
 import pandas as pd
 

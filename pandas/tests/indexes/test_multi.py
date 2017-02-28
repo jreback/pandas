@@ -17,7 +17,7 @@ from pandas import (CategoricalIndex, DataFrame, Index, MultiIndex,
 from pandas.compat import PY3, long, lrange, lzip, range, u
 from pandas.core.common import PerformanceWarning, UnsortedIndexError
 from pandas.indexes.base import InvalidIndexError
-from pandas.lib import Timestamp
+from pandas._lib import Timestamp
 
 import pandas.util.testing as tm
 

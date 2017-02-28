@@ -400,7 +400,7 @@ class UltraJSONTests(TestCase):
         assert ujson.encode(input) == 'null', "Expected null"
 
     def test_datetime_units(self):
-        from pandas.lib import Timestamp
+        from pandas._lib import Timestamp
 
         val = datetime.datetime(2013, 8, 17, 21, 17, 12, 215504)
         stamp = Timestamp(val)

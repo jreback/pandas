@@ -5,7 +5,7 @@ import itertools
 
 import numpy as np
 from pandas import _hash, Series, factorize, Categorical, Index, MultiIndex
-from pandas.lib import is_bool_array
+from pandas._lib import is_bool_array
 from pandas.types.generic import ABCIndexClass, ABCSeries, ABCDataFrame
 from pandas.types.common import (is_categorical_dtype, is_numeric_dtype,
                                  is_datetime64_dtype, is_timedelta64_dtype,

@@ -30,7 +30,7 @@ from pandas.util.decorators import Appender
 import pandas as pd
 
 from pandas.io.common import get_filepath_or_buffer, BaseIterator
-from pandas.lib import max_len_string_array, infer_dtype
+from pandas._lib import max_len_string_array, infer_dtype
 from pandas._tslib import NaT, Timestamp
 
 _version_error = ("Version of given Stata file is not 104, 105, 108, "

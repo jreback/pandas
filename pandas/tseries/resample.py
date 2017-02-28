@@ -20,9 +20,9 @@ import pandas.core.algorithms as algos
 import pandas.compat as compat
 from pandas.compat.numpy import function as nv
 
-from pandas.lib import Timestamp
+from pandas._lib import Timestamp
 from pandas._period import IncompatibleFrequency
-import pandas.lib as lib
+import pandas._lib as lib
 import pandas._tslib as tslib
 
 from pandas.util.decorators import Appender

@@ -22,7 +22,7 @@ from pandas.core.common import AbstractMethodError
 import pandas.formats.printing as printing
 import pandas._tslib as tslib
 import pandas._period as prlib
-import pandas.lib as lib
+import pandas._lib as lib
 from pandas.core.index import Index
 from pandas.indexes.base import _index_shared_docs
 from pandas.util.decorators import Appender, cache_readonly

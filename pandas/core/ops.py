@@ -14,7 +14,7 @@ from pandas import compat, lib, tslib
 import pandas.index as _index
 from pandas.util.decorators import Appender
 import pandas.computation.expressions as expressions
-from pandas.lib import isscalar
+from pandas._lib import isscalar
 from pandas._tslib import iNaT
 from pandas.compat import bind_method
 import pandas.core.missing as missing

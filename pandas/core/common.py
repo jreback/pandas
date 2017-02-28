@@ -8,7 +8,7 @@ from datetime import datetime, timedelta
 from functools import partial
 
 import numpy as np
-import pandas.lib as lib
+import pandas._lib as lib
 import pandas._tslib as tslib
 from pandas import compat
 from pandas.compat import long, zip, iteritems

@@ -4,11 +4,11 @@ import operator
 
 import numpy as np
 import pandas._tslib as tslib
-import pandas.lib as lib
+import pandas._lib as lib
 import pandas._join as _join
 import pandas.algos as _algos
 import pandas.index as _index
-from pandas.lib import Timestamp, Timedelta, is_datetime_array
+from pandas._lib import Timestamp, Timedelta, is_datetime_array
 
 from pandas.compat import range, u
 from pandas.compat.numpy import function as nv

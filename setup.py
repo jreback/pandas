@@ -326,7 +326,7 @@ sdist_class = cmdclass['sdist']
 class CheckSDist(sdist_class):
     """Custom sdist that ensures Cython has compiled all pyx files to c."""
 
-    _pyxfiles = ['pandas/lib.pyx',
+    _pyxfiles = ['pandas.lib.pyx',
                  'pandas/hashtable.pyx',
                  'pandas.tslib.pyx',
                  'pandas/index.pyx',

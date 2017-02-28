@@ -68,7 +68,7 @@ import pandas.formats.format as fmt
 from pandas.util.decorators import Appender, deprecate_kwarg, Substitution
 from pandas.util.validators import validate_bool_kwarg
 
-import pandas.lib as lib
+import pandas._lib as lib
 import pandas._tslib as tslib
 import pandas.index as _index
 

@@ -93,7 +93,7 @@ import pandas.formats.format as fmt
 from pandas.formats.printing import pprint_thing
 import pandas.tools.plotting as gfx
 
-import pandas.lib as lib
+import pandas._lib as lib
 import pandas.algos as _algos
 
 from pandas.core.config import get_option
