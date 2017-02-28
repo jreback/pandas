@@ -41,6 +41,7 @@ cdef build_count_table_{{dtype}}({{dtype}}_t[:] values,
         int ret = 0
 
     {{if dtype == 'object'}}
+    from pandas._lib import checknull
     kh_resize_{{ttype}}(table, n // 10)
 
     for i in range(n):
