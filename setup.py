@@ -478,7 +478,8 @@ ext_data = dict(
                'pxdfiles': ['src/hashtable', 'src/util', 'src/khash'],
                'depends': (['pandas/src/klib/khash_python.h']
                            + _pxi_dep['hashtable'])},
-    _tslib={'pyxfile': 'src/tslib',
+    _tslib={'pyxfile': 'tslib',
+            'pxdfiles': ['src/tslib'],
             'depends': tseries_depends,
             'sources': ['pandas/src/datetime/np_datetime.c',
                         'pandas/src/datetime/np_datetime_strings.c',
