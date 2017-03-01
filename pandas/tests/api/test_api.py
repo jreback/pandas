@@ -100,7 +100,7 @@ class TestPDApi(Base, tm.TestCase):
                 'to_numeric', 'to_pickle', 'to_timedelta']
 
     # these should be deprecated in the future
-    deprecated_funcs_in_future = ['pnow', 'groupby', 'info']
+    deprecated_funcs_in_future = ['pnow', 'groupby']
 
     # these are already deprecated; awaiting removal
     deprecated_funcs = ['ewma', 'ewmcorr', 'ewmcov', 'ewmstd', 'ewmvar',
@@ -225,3 +225,33 @@ class TestDatetools(tm.TestCase):
         with tm.assert_produces_warning(FutureWarning,
                                         check_stacklevel=False):
             pd.datetools.monthEnd
+
+
+class TestTopLevelDeprecations(tm.TestCase):
+    # top-level API deprecations
+    # GH 13790
+
+    def test_pnow(self):
+        with tm.assert_produces_warning(FutureWarning,
+                                        check_stacklevel=False):
+            pd.pnow(freq='M')
+
+    def test_term(self):
+        with tm.assert_produces_warning(FutureWarning,
+                                        check_stacklevel=False):
+            pd.Term('index>=date')
+
+    def test_expr(self):
+        with tm.assert_produces_warning(FutureWarning,
+                                        check_stacklevel=False):
+            pd.Expr('2>1')
+
+    def test_match(self):
+        with tm.assert_produces_warning(FutureWarning,
+                                        check_stacklevel=False):
+            pd.match([1, 2, 3], [1])
+
+    def test_groupby(self):
+        with tm.assert_produces_warning(FutureWarning,
+                                        check_stacklevel=False):
+            pd.groupby(pd.Series([1, 2, 3]), [1, 1, 1])
