@@ -28,13 +28,21 @@ class FrozenList(PandasObject, list):
 
     def __add__(self, other):
         warnings.warn("__add__ is deprecated, use union(...)", FutureWarning)
-        return self.union(other)
+        if isinstance(other, tuple):
+            other = list(other)
+        return self.__class__(other + list(self))
 
     def __iadd__(self, other):
         warnings.warn("__iadd__ is deprecated, use union(...)", FutureWarning)
         if isinstance(other, tuple):
             other = list(other)
         return super(FrozenList, self).__iadd__(other)
+
+    def __radd__(self, other):
+        warnings.warn("__radd__ is deprecated, use union(...)", FutureWarning)
+        if isinstance(other, tuple):
+            other = list(other)
+        return self.__class__(other + list(self))
 
     # Python 2 compat
     def __getslice__(self, i, j):
@@ -45,11 +53,6 @@ class FrozenList(PandasObject, list):
         if isinstance(n, slice):
             return self.__class__(super(FrozenList, self).__getitem__(n))
         return super(FrozenList, self).__getitem__(n)
-
-    def __radd__(self, other):
-        if isinstance(other, tuple):
-            other = list(other)
-        return self.__class__(other + list(self))
 
     def __eq__(self, other):
         if isinstance(other, (tuple, FrozenList)):
@@ -89,7 +92,7 @@ class FrozenList(PandasObject, list):
         """Returns a FrozenList with other concatenated to the end of self"""
         if isinstance(other, tuple):
             other = list(other)
-        return self.__class__(super(FrozenList, self).__add__(other))
+        return self.__class__(list(self) + other)
 
     def difference(self, other):
         """Returns a FrozenList with the same elements as self, but with elements
