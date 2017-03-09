@@ -237,6 +237,9 @@ Enhancements
 
       .. ipython:: python
           :suppress:
+          :okexcept:
+          import os
+          os.remove('store.h5')
 
           from pandas.compat import lrange
 
@@ -249,7 +252,7 @@ Enhancements
       .. ipython:: python
           :suppress:
           :okexcept:
-
+          import os
           os.remove('store.h5')
 
     - provide dotted attribute access to ``get`` from stores, e.g. ``store.df == store['df']``

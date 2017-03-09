@@ -272,6 +272,7 @@ Updated PyTables Support
    :suppress:
    :okexcept:
 
+   import os
    os.remove('store.h5')
 
 .. ipython:: python
@@ -365,6 +366,7 @@ Updated PyTables Support
 
 .. ipython:: python
    :suppress:
+   :okexcept:
 
    store.close()
    import os
