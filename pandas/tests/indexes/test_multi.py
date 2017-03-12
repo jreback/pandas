@@ -2196,9 +2196,11 @@ class TestMultiIndex(Base, tm.TestCase):
         for n in range(1, 6):  # 1st level shape
             for m in range(1, 5):  # 2nd level shape
                 # all possible unique combinations, including nan
+                levels = [list('abcde')[:n], list('WXYZ')[:m]]
                 lab = product(range(-1, n), range(-1, m))
-                mi = MultiIndex(levels=[list('abcde')[:n], list('WXYZ')[:m]],
-                                labels=np.random.permutation(list(lab)).T)
+                lab = np.random.permutation(list(lab)).T
+                mi = MultiIndex(levels=levels,
+                                labels=lab)
                 self.assertEqual(len(mi), (n + 1) * (m + 1))
                 self.assertFalse(mi.has_duplicates)
                 self.assertEqual(mi.get_duplicates(), [])
