@@ -8,7 +8,6 @@ language: python
 # The cash directories will be deleted if anything in ci/ changes in a commit
 cache:
  directories:
-  - $HOME/.cache # cython cache
   - $HOME/.ccache # compiler cache
 
 env:
@@ -189,9 +188,7 @@ before_install:
 install:
   - echo "install start"
   - ci/check_cache.sh
-  - ci/prep_cython_cache.sh
   - ci/install_travis.sh
-  - ci/submit_cython_cache.sh
   - echo "install done"
 
 before_script:
