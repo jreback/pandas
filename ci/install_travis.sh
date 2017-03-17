@@ -43,6 +43,7 @@ fi
 
 # install miniconda
 if [ "${TRAVIS_OS_NAME}" == "osx" ]; then
+    brew install ccache
     time wget http://repo.continuum.io/miniconda/Miniconda3-latest-MacOSX-x86_64.sh -O miniconda.sh || exit 1
 else
     time wget http://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh -O miniconda.sh || exit 1
