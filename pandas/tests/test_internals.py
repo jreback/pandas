@@ -1151,7 +1151,7 @@ class TestBlockPlacement(tm.TestCase):
         assert list(BlockPlacement(slice(3, 0))) == []
 
         assert list(BlockPlacement(slice(3, 0, -1))) == [3, 2, 1]
-        assert list(BlockPlacement(slice(3, None, -1))) == [3, 2, 1, 0]
+        assert list(BlockPlacement(slice(3, None, -1))) == [3, 2, 1]
 
     def test_slice_to_array_conversion(self):
         def assert_as_array_equals(slc, asarray):
@@ -1164,7 +1164,7 @@ class TestBlockPlacement(tm.TestCase):
         assert_as_array_equals(slice(3, 0), [])
 
         assert_as_array_equals(slice(3, 0, -1), [3, 2, 1])
-        assert_as_array_equals(slice(3, None, -1), [3, 2, 1, 0])
+        assert_as_array_equals(slice(3, None, -1), [3, 2, 1])
         assert_as_array_equals(slice(31, None, -10), [31, 21, 11, 1])
 
     def test_blockplacement_add(self):
@@ -1180,23 +1180,22 @@ class TestBlockPlacement(tm.TestCase):
         assert_add_equals(slice(0, 0), 0, [])
         assert_add_equals(slice(1, 4), 0, [1, 2, 3])
         assert_add_equals(slice(3, 0, -1), 0, [3, 2, 1])
-        assert_add_equals(slice(2, None, -1), 0, [2, 1, 0])
+        assert_add_equals(slice(2, None, -1), 0, [2, 1])
         assert_add_equals([1, 2, 4], 0, [1, 2, 4])
 
         assert_add_equals(slice(0, 0), 10, [])
         assert_add_equals(slice(1, 4), 10, [11, 12, 13])
         assert_add_equals(slice(3, 0, -1), 10, [13, 12, 11])
-        assert_add_equals(slice(2, None, -1), 10, [12, 11, 10])
+        assert_add_equals(slice(2, None, -1), 10, [12, 11])
         assert_add_equals([1, 2, 4], 10, [11, 12, 14])
 
         assert_add_equals(slice(0, 0), -1, [])
         assert_add_equals(slice(1, 4), -1, [0, 1, 2])
-        assert_add_equals(slice(3, 0, -1), -1, [2, 1, 0])
+        assert_add_equals(slice(3, 0, -1), -1, [2, 1])
         assert_add_equals([1, 2, 4], -1, [0, 1, 3])
 
         with pytest.raises(ValueError):
             BlockPlacement(slice(1, 4)).add(-10)
         with pytest.raises(ValueError):
             BlockPlacement([1, 2, 4]).add(-10)
-        with pytest.raises(ValueError):
-            BlockPlacement(slice(2, None, -1)).add(-1)
+        assert_add_equals(slice(2, None, -1), -1, [1])

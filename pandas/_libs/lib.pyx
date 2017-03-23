@@ -1840,11 +1840,8 @@ cdef class BlockPlacement:
         cdef slice s = self._ensure_has_slice()
         cdef Py_ssize_t other_int, start, stop, step, l
 
-        if isinstance(other, int) and s is not None:
+        if util.is_integer_object(other) and s is not None:
             other_int = <Py_ssize_t>other
-
-            if other_int == 0:
-                return self
 
             start, stop, step, l = slice_get_indices_ex(s)
             start += other_int
