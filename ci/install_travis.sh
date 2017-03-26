@@ -78,7 +78,7 @@ if [ -z "$NOCACHE" ] && [ "${TRAVIS_OS_NAME}" == "linux" ]; then
     export CC='ccache gcc'
 elif [ -z "$NOCACHE" ] && [ "${TRAVIS_OS_NAME}" == "osx" ]; then
     echo "[Using ccache]"
-    time brew install ccache
+    brew install ccache > /dev/null 2>&1
     export PATH=/usr/local/opt/ccache/libexec:$PATH
     gcc=$(which gcc)
     echo "[gcc]: $gcc"
