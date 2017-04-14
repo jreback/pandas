@@ -17,7 +17,7 @@ except ImportError:
           "or `pip install Jinja2`"
     raise ImportError(msg)
 
-from pandas.types.common import is_float, is_string_like
+from pandas.core.types.common import is_float, is_string_like
 
 import numpy as np
 import pandas as pd

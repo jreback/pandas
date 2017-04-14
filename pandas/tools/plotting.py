@@ -11,12 +11,13 @@ from distutils.version import LooseVersion
 
 import numpy as np
 
-from pandas.types.common import (is_list_like,
-                                 is_integer,
-                                 is_number,
-                                 is_hashable,
-                                 is_iterator)
-from pandas.types.missing import isnull, notnull
+from pandas.core.types.common import (
+    is_list_like,
+    is_integer,
+    is_number,
+    is_hashable,
+    is_iterator)
+from pandas.core.types.missing import isnull, notnull
 
 from pandas.util.decorators import cache_readonly, deprecate_kwarg
 from pandas.core.base import PandasObject

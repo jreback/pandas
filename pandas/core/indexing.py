@@ -4,17 +4,18 @@ import warnings
 import numpy as np
 from pandas.compat import range, zip
 import pandas.compat as compat
-from pandas.types.generic import ABCDataFrame, ABCPanel, ABCSeries
-from pandas.types.common import (is_integer_dtype,
-                                 is_integer, is_float,
-                                 is_list_like,
-                                 is_sequence,
-                                 is_iterator,
-                                 is_scalar,
-                                 is_sparse,
-                                 _is_unorderable_exception,
-                                 _ensure_platform_int)
-from pandas.types.missing import isnull, _infer_fill_value
+from pandas.core.types.generic import ABCDataFrame, ABCPanel, ABCSeries
+from pandas.core.types.common import (
+    is_integer_dtype,
+    is_integer, is_float,
+    is_list_like,
+    is_sequence,
+    is_iterator,
+    is_scalar,
+    is_sparse,
+    _is_unorderable_exception,
+    _ensure_platform_int)
+from pandas.core.types.missing import isnull, _infer_fill_value
 
 from pandas.core.index import Index, MultiIndex
 
