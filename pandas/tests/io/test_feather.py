@@ -53,7 +53,7 @@ class TestFeather(object):
                            'dtns': pd.date_range('20130101', periods=3,
                                                  freq='ns')})
 
-        assert df.dttz.dtype.tz.zone is not None
+        assert df.dttz.dtype.tz.zone == 'US/Eastern'
         self.check_round_trip(df)
 
     def test_strided_data_issues(self):
