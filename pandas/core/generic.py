@@ -10,7 +10,7 @@ import numpy as np
 import pandas as pd
 
 from pandas._libs import tslib, lib
-from pandas.core.types.common import (
+from pandas.core.typed.common import (
     _coerce_to_dtype,
     _ensure_int64,
     needs_i8_conversion,
@@ -24,9 +24,9 @@ from pandas.core.types.common import (
     is_list_like,
     is_dict_like,
     is_re_compilable)
-from pandas.core.types.cast import maybe_promote, maybe_upcast_putmask
-from pandas.core.types.missing import isnull, notnull
-from pandas.core.types.generic import ABCSeries, ABCPanel
+from pandas.core.typed.cast import maybe_promote, maybe_upcast_putmask
+from pandas.core.typed.missing import isnull, notnull
+from pandas.core.typed.generic import ABCSeries, ABCPanel
 
 from pandas.core.common import (_values_from_object,
                                 _maybe_box_datetimelike,

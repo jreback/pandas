@@ -15,7 +15,7 @@ import sys
 import struct
 from dateutil.relativedelta import relativedelta
 
-from pandas.core.types.common import (
+from pandas.core.typed.common import (
     is_categorical_dtype, is_datetime64_dtype,
     _ensure_object)
 

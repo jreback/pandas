@@ -4,7 +4,7 @@ from collections import MutableMapping
 
 from pandas._libs import lib, tslib
 
-from pandas.core.types.common import (
+from pandas.core.typed.common import (
     _ensure_object,
     is_datetime64_ns_dtype,
     is_datetime64_dtype,
@@ -15,10 +15,10 @@ from pandas.core.types.common import (
     is_list_like,
     is_scalar,
     is_numeric_dtype)
-from pandas.core.types.generic import (
+from pandas.core.typed.generic import (
     ABCIndexClass, ABCSeries,
     ABCDataFrame)
-from pandas.core.types.missing import notnull
+from pandas.core.typed.missing import notnull
 from pandas.core import algorithms
 
 import pandas.compat as compat

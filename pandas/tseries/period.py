@@ -5,7 +5,7 @@ import warnings
 
 
 from pandas.core import common as com
-from pandas.core.types.common import (
+from pandas.core.typed.common import (
     is_integer,
     is_float,
     is_object_dtype,
@@ -19,8 +19,8 @@ from pandas.core.types.common import (
     is_bool_dtype,
     pandas_dtype,
     _ensure_object)
-from pandas.core.types.dtypes import PeriodDtype
-from pandas.core.types.generic import ABCSeries
+from pandas.core.typed.dtypes import PeriodDtype
+from pandas.core.typed.generic import ABCSeries
 
 import pandas.tseries.frequencies as frequencies
 from pandas.tseries.frequencies import get_freq_code as _gfc

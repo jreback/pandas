@@ -12,13 +12,13 @@ import numpy as np
 from collections import defaultdict
 from datetime import timedelta
 
-from pandas.core.types.generic import (
+from pandas.core.typed.generic import (
     ABCSeries,
     ABCDataFrame,
     ABCDatetimeIndex,
     ABCTimedeltaIndex,
     ABCPeriodIndex)
-from pandas.core.types.common import (
+from pandas.core.typed.common import (
     is_integer,
     is_bool,
     is_float_dtype,

@@ -2,8 +2,8 @@
 Quantilization functions and related stuff
 """
 
-from pandas.core.types.missing import isnull
-from pandas.core.types.common import (
+from pandas.core.typed.missing import isnull
+from pandas.core.typed.common import (
     is_integer,
     is_scalar,
     is_categorical_dtype,

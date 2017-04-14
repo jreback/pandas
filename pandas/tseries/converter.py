@@ -11,7 +11,7 @@ from matplotlib.ticker import Formatter, AutoLocator, Locator
 from matplotlib.transforms import nonsingular
 
 
-from pandas.core.types.common import (
+from pandas.core.typed.common import (
     is_float, is_integer,
     is_integer_dtype,
     is_float_dtype,

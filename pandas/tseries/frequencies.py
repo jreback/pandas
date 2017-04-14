@@ -6,8 +6,8 @@ import warnings
 
 import numpy as np
 
-from pandas.core.types.generic import ABCSeries
-from pandas.core.types.common import (
+from pandas.core.typed.generic import ABCSeries
+from pandas.core.typed.common import (
     is_integer,
     is_period_arraylike,
     is_timedelta64_dtype,

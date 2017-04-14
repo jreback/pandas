@@ -3,9 +3,9 @@
 import pytest
 import numpy as np
 
-from pandas.core.types.dtypes import (
+from pandas.core.typed.dtypes import (
     DatetimeTZDtype, PeriodDtype, CategoricalDtype)
-from pandas.core.types.common import (
+from pandas.core.typed.common import (
     pandas_dtype, is_dtype_equal)
 
 import pandas.util.testing as tm
@@ -89,11 +89,11 @@ def test_dtype_equal_strict():
 
 def get_is_dtype_funcs():
     """
-    Get all functions in pandas.core.types.common that
+    Get all functions in pandas.core.typed.common that
     begin with 'is_' and end with 'dtype'
 
     """
-    import pandas.core.types.common as com
+    import pandas.core.typed.common as com
 
     fnames = [f for f in dir(com) if (f.startswith('is_') and
                                       f.endswith('dtype'))]

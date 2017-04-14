@@ -48,7 +48,7 @@ import numpy as np
 from pandas import compat
 from pandas.compat import u, u_safe
 
-from pandas.core.types.common import (
+from pandas.core.typed.common import (
     is_categorical_dtype, is_object_dtype,
     needs_i8_conversion, pandas_dtype)
 

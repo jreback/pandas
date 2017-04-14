@@ -2,10 +2,10 @@
 
 import numpy as np
 
-from pandas.core.types.missing import notnull, isnull
-from pandas.core.types.generic import ABCPeriodIndex
-from pandas.core.types.dtypes import IntervalDtype
-from pandas.core.types.common import (
+from pandas.core.typed.missing import notnull, isnull
+from pandas.core.typed.generic import ABCPeriodIndex
+from pandas.core.typed.dtypes import IntervalDtype
+from pandas.core.typed.common import (
     _ensure_platform_int,
     is_list_like,
     is_datetime_or_timedelta_dtype,

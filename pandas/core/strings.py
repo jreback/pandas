@@ -1,9 +1,9 @@
 import numpy as np
 
 from pandas.compat import zip
-from pandas.core.types.generic import ABCSeries, ABCIndex
-from pandas.core.types.missing import isnull, notnull
-from pandas.core.types.common import (
+from pandas.core.typed.generic import ABCSeries, ABCIndex
+from pandas.core.typed.missing import isnull, notnull
+from pandas.core.typed.common import (
     is_bool_dtype,
     is_categorical_dtype,
     is_object_dtype,

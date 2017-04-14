@@ -9,8 +9,8 @@ from distutils.version import LooseVersion
 
 import numpy as np
 
-from pandas.core.types.dtypes import CategoricalDtype
-from pandas.core.types.common import (
+from pandas.core.typed.dtypes import CategoricalDtype
+from pandas.core.typed.common import (
     is_categorical_dtype,
     is_float_dtype,
     is_integer_dtype)

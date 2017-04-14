@@ -12,9 +12,9 @@ import re
 import numpy as np
 
 import pandas._libs.lib as lib
-from pandas.core.types.missing import isnull
-from pandas.core.types.dtypes import DatetimeTZDtype
-from pandas.core.types.common import (
+from pandas.core.typed.missing import isnull
+from pandas.core.typed.dtypes import DatetimeTZDtype
+from pandas.core.typed.common import (
     is_list_like, is_dict_like,
     is_datetime64tz_dtype)
 

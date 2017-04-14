@@ -10,8 +10,8 @@ from distutils.version import LooseVersion
 
 import sys
 
-from pandas.core.types.missing import isnull, notnull
-from pandas.core.types.common import (
+from pandas.core.typed.missing import isnull, notnull
+from pandas.core.typed.common import (
     is_categorical_dtype,
     is_float_dtype,
     is_period_arraylike,
@@ -24,7 +24,7 @@ from pandas.core.types.common import (
     is_datetime64_dtype,
     is_timedelta64_dtype,
     is_list_like)
-from pandas.core.types.generic import ABCSparseArray
+from pandas.core.typed.generic import ABCSparseArray
 from pandas.core.base import PandasObject
 from pandas.core.index import Index, MultiIndex, _ensure_index
 from pandas import compat

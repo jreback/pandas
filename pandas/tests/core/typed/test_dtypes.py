@@ -5,10 +5,10 @@ import numpy as np
 import pandas as pd
 from pandas import Series, Categorical, IntervalIndex, date_range
 
-from pandas.core.types.dtypes import (
+from pandas.core.typed.dtypes import (
     DatetimeTZDtype, PeriodDtype,
     IntervalDtype, CategoricalDtype)
-from pandas.core.types.common import (
+from pandas.core.typed.common import (
     is_categorical_dtype, is_categorical,
     is_datetime64tz_dtype, is_datetimetz,
     is_period_dtype, is_period,
