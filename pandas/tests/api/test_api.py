@@ -30,7 +30,7 @@ class TestPDApi(Base, tm.TestCase):
     ignored = ['tests', 'locale', 'conftest']
 
     # top-level sub-packages
-    lib = ['api', 'compat', 'computation', 'core',
+    lib = ['api', 'compat', 'core',
            'indexes', 'formats', 'errors', 'pandas',
            'test', 'tools', 'tseries', 'sparse',
            'util', 'options', 'io']
@@ -39,8 +39,8 @@ class TestPDApi(Base, tm.TestCase):
     deprecated_modules = ['stats', 'datetools', 'parser',
                           'json', 'lib', 'tslib']
 
-    # to be deprecated
-    to_be_deprecated_moduels = ['types']
+    # to be deprecated or removed
+    to_be_deprecated_moduels = ['computation', 'types']
 
     # misc
     misc = ['IndexSlice', 'NaT']
