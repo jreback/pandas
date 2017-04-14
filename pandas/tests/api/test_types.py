@@ -1,7 +1,9 @@
 # -*- coding: utf-8 -*-
 
+from warnings import catch_warnings
 import numpy as np
 
+import pandas
 from pandas.core import common as com
 from pandas.api import types
 from pandas.util import testing as tm
@@ -82,3 +84,10 @@ class TestTypes(Base, tm.TestCase):
         for t in ['is_null_datelike_scalar',
                   'ensure_float']:
             self.assertRaises(AttributeError, lambda: getattr(com, t))
+
+
+def test_moved_infer_dtype():
+
+    with catch_warnings(record=True):
+        e = pandas.lib.infer_dtype('foo')
+        assert e is not None
