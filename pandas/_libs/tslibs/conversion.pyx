@@ -360,8 +360,7 @@ cdef _TSObject convert_datetime_to_tsobject(datetime ts, object tz,
 
     if not PyDateTime_CheckExact(ts):
         # datetime instance but not datetime type --> Timestamp
-        obj.value += ts.nanosecond
-        obj.dts.ps = ts.nanosecond * 1000
+        nanos = getattr(ts, 'nanosecond', 0)
 
     if nanos:
         obj.value += nanos

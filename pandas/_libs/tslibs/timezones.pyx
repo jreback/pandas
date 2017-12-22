@@ -161,7 +161,11 @@ cpdef get_utcoffset(tzinfo, obj):
     try:
         return tzinfo._utcoffset
     except AttributeError:
-        return tzinfo.utcoffset(obj)
+        result = tzinfo.utcoffset(obj)
+        if result is None:
+            raise ValueError("tzinfo of type {} is not supported".format(
+                type(tzinfo)))
+        return result
 
 
 cdef inline bint is_fixed_offset(object tz):

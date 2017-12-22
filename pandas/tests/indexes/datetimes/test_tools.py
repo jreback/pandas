@@ -456,6 +456,15 @@ class TestToDatetime(object):
         with pytest.raises(TypeError):
             pd.to_datetime(pd.to_datetime)
 
+    @td.skip_if_no('pendulum')
+    def test_constructor_invalid_tz(self):
+        # construction is ok
+        # gh-15986
+
+        import pendulum
+        with pytest.raises(ValueError):
+            date_range(start=pendulum.now(), end=pendulum.tomorrow())
+
     @pytest.mark.parametrize("utc", [True, None])
     @pytest.mark.parametrize("format", ['%Y%m%d %H:%M:%S', None])
     @pytest.mark.parametrize("box", [True, False])

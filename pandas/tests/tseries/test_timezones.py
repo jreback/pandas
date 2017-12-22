@@ -1167,6 +1167,29 @@ class TestTimeZoneSupportDateutil(TestTimeZoneSupportPytz):
         tm.assert_numpy_array_equal(dti2.asi8, dti.asi8)
 
 
+@td.skip_if_no('pendulum')
+class TestTimeZoneSupportPendulum(object):
+
+    def test_localize_tz(self):
+        # gh-15986
+
+        import pendulum
+        now = pendulum.datetime(2017, 1, 2, 3, 4, 5, 6)
+        result = Timestamp(now).tz_localize(None)
+        expected = Timestamp('2017-01-02 03:04:05.000006')
+        assert result == expected
+
+    def test_convert_tz(self):
+        # gh-15986
+
+        import pendulum
+        now = pendulum.datetime(2017, 1, 2, 3, 4, 5, 6)
+        result = Timestamp(now).tz_convert('US/Eastern')
+        expected = Timestamp('2017-01-02 03:04:05.000006',
+                             tz='UTC').tz_convert('US/Eastern')
+        assert result == expected
+
+
 class TestTimeZoneCacheKey(object):
 
     def test_cache_keys_are_distinct_for_pytz_vs_dateutil(self):

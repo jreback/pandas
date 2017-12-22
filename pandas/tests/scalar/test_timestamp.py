@@ -338,6 +338,24 @@ class TestTimestampConstructors(object):
             Timestamp.fromordinal(base.toordinal(), offset='D', freq='D')
 
 
+@td.skip_if_no('pendulum')
+class TestTimestampPendulum(object):
+
+    def test_constructor_tz(self):
+        # construction is ok
+        # gh-15986
+
+        import pendulum
+        now = pendulum.datetime(2017, 1, 2, 3, 4, 5, 6)
+
+        # works
+        result = Timestamp(str(now), tz=now.tz)
+        assert 'UTC' in str(result.tz)
+
+        result = Timestamp(now)
+        assert 'UTC' in str(result.tz)
+
+
 class TestTimestamp(object):
 
     def test_conversion(self):
