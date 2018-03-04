@@ -5602,9 +5602,9 @@ class NDFrame(PandasObject, SelectionMixin):
         # GH 17276
         # numpy doesn't like NaN as a clip value
         # so ignore
-        if np.any(pd.isnull(lower)):
+        if np.any(isna(np.asarray(lower).ravel())):
             lower = None
-        if np.any(pd.isnull(upper)):
+        if np.any(isna(np.asarray(upper).ravel())):
             upper = None
 
         # GH 2747 (arguments were reversed)
